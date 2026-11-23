@@ -1,0 +1,55 @@
+<div class="login-box">
+  <!-- Navegación requerida: Home <-> Login -->
+  <p><a routerLink="/">← Volver a Home</a></p>
+
+  <h2>Validación de Login - Enfermería</h2>
+
+  <!-- Requisito: Imagen o icono -->
+  <img
+    src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png"
+    alt="Icono Enfermero"
+    width="90"
+  />
+
+  <div class="campo">
+    <label for="nurseName">Nombre completo:</label>
+    <input #nameInput id="nurseName" type="text" placeholder="Nombre del enfermero/a" />
+  </div>
+
+  <div class="campo">
+    <label for="nursePass">Contraseña:</label>
+    <input
+      #passInput
+      id="nursePass"
+      [type]="showPassword ? 'text' : 'password'"
+      placeholder="••••••••"
+    />
+    <button type="button" (click)="togglePassword()">
+      {{ showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña' }}
+    </button>
+  </div>
+
+  <!-- Requisito: Uso de @for para listar los turnos en un desplegable -->
+  <div class="campo">
+    <label for="shiftSelect">Turno de guardia:</label>
+    <select #shiftSelect id="shiftSelect">
+      @for (shift of shifts; track shift) {
+        <option [value]="shift">{{ shift }}</option>
+      }
+    </select>
+  </div>
+
+  <!-- Requisito: Interacción (click) que modifica un valor visible -->
+  <button type="button" (click)="validateLogin(nameInput.value, passInput.value, shiftSelect.value)">
+    Iniciar Sesión
+  </button>
+
+  <!-- Requisito: Uso de @if -->
+  @if (loginStatus === 'success') {
+    <p class="msg-ok">{{ loginMessage }}</p>
+  } @else if (loginStatus === 'error') {
+    <p class="msg-err">{{ loginMessage }}</p>
+  } @else {
+    <p>{{ loginMessage }}</p>
+  }
+</div>
