@@ -1,0 +1,68 @@
+<div class="register-box">
+  <!-- Navegación requerida: Home <-> Registro -->
+  <p><a routerLink="/">← Volver a Home</a></p>
+
+  <h2>Registro de Enfermería</h2>
+
+  <!-- Requisito: Imagen o icono -->
+  <img
+    src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png"
+    alt="Icono Registro Enfermería"
+    width="90"
+  />
+
+  <div class="campo">
+    <label for="regName">Nombre completo:</label>
+    <input #nameInput id="regName" type="text" placeholder="Ej. Laura Gómez" />
+  </div>
+
+  <div class="campo">
+    <label for="regPass">Contraseña:</label>
+    <input
+      #passInput
+      id="regPass"
+      [type]="showPassword ? 'text' : 'password'"
+      placeholder="Mínimo 4 caracteres"
+    />
+    <button type="button" (click)="togglePassword()">
+      {{ showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña' }}
+    </button>
+  </div>
+
+  <!-- Requisito: Uso de @for para departamentos -->
+  <div class="campo">
+    <label for="deptSelect">Departamento:</label>
+    <select #deptSelect id="deptSelect">
+      @for (dept of departments; track dept) {
+        <option [value]="dept">{{ dept }}</option>
+      }
+    </select>
+  </div>
+
+  <!-- Requisito: Uso de @for para turnos -->
+  <div class="campo">
+    <label for="shiftSelect">Turno asignado:</label>
+    <select #shiftSelect id="shiftSelect">
+      @for (shift of shifts; track shift) {
+        <option [value]="shift">{{ shift }}</option>
+      }
+    </select>
+  </div>
+
+  <!-- Requisito: Interacción (click) que modifica valores visibles -->
+  <button
+    type="button"
+    (click)="registerNurse(nameInput.value, passInput.value, deptSelect.value, shiftSelect.value)"
+  >
+    Registrar Enfermero/a
+  </button>
+
+  <!-- Requisito: Uso de @if -->
+  @if (registerStatus === 'success') {
+    <p class="msg-ok">{{ registerMessage }}</p>
+  } @else if (registerStatus === 'error') {
+    <p class="msg-err">{{ registerMessage }}</p>
+  } @else {
+    <p>{{ registerMessage }}</p>
+  }
+</div>
