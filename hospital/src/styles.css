@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  /* Paleta natural pastel: celeste y verde */
+  --bg-page: #f2f9f7;          /* Fondo general verde-celeste muy suave */
+  --bg-card: #ffffff;          /* Blanco puro para tarjetas */
+  --pastel-sky: #e0f2fe;       /* Celeste pastel */
+  --pastel-sky-border: #bae6fd;
+  --pastel-mint: #d1fae5;      /* Verde menta pastel */
+  --pastel-mint-border: #a7f3d0;
+  --accent-teal: #2a9d8f;      /* Verde azulado natural para botones y acentos */
+  --accent-teal-hover: #21867a;
+  --text-main: #1e3a3a;        /* Verde bosque muy oscuro (más suave que el negro puro) */
+  --text-muted: #52796f;       /* Verde grisáceo para subtítulos */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(135deg, #eef8fc 0%, #eefaf4 100%);
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.6;
+}
